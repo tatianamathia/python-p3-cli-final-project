@@ -8,5 +8,8 @@ ipdb = "*"
 
 [dev-packages]
 
+[packages]
+prompt_toolkit = "*"
+
 [requires]
 python_version = "3.8"
