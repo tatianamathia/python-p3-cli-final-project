@@ -1,7 +1,7 @@
 import sys
-from lib.db.students import create_student, delete_student, get_all_students, find_student_by_id
-from lib.db.visits import create_visit, delete_visit, get_all_visits, find_visit_by_id
-from lib.db.medical_issues import create_medical_issue, delete_medical_issue, get_all_medical_issues, find_medical_issue_by_id
+from db.students import Student
+from db.visit import Visit
+from db.medical_issue import MedicalIssue
 
 def main_menu():
     while True:
@@ -37,19 +37,19 @@ def manage_students():
         if choice == "1":
             name = input("Enter student's name: ")
             gender = input("Enter student's gender: ")
-            student_id = create_student(name, gender)
+            student_id = Student.create(name, gender)
             print(f"Student created with ID: {student_id}")
         elif choice == "2":
             student_id = input("Enter student ID to delete: ")
-            delete_student(student_id)
+            Student.delete(student_id)
             print(f"Student with ID {student_id} deleted.")
         elif choice == "3":
-            students = get_all_students()
+            students = Student.get_all()
             for student in students:
                 print(student)
         elif choice == "4":
             student_id = input("Enter student ID to find: ")
-            student = find_student_by_id(student_id)
+            student = Student.find_by_id(student_id)
             print(student)
         elif choice == "5":
             break
@@ -70,19 +70,19 @@ def manage_visits():
             student_id = input("Enter student ID: ")
             medical_issue_id = input("Enter medical issue ID: ")
             date = input("Enter visit date: ")
-            visit_id = create_visit(student_id, medical_issue_id, date)
+            visit_id = Visit.create(student_id, medical_issue_id, date)
             print(f"Visit created with ID: {visit_id}")
         elif choice == "2":
             visit_id = input("Enter visit ID to delete: ")
-            delete_visit(visit_id)
+            Visit.delete(visit_id)
             print(f"Visit with ID {visit_id} deleted.")
         elif choice == "3":
-            visits = get_all_visits()
+            visits = Visit.get_all()
             for visit in visits:
                 print(visit)
         elif choice == "4":
             visit_id = input("Enter visit ID to find: ")
-            visit = find_visit_by_id(visit_id)
+            visit = Visit.find_by_id(visit_id)
             print(visit)
         elif choice == "5":
             break
@@ -103,19 +103,19 @@ def manage_medical_issues():
             description = input("Enter medical issue description: ")
             severity = input("Enter severity: ")
             treatment = input("Enter treatment: ")
-            medical_issue_id = create_medical_issue(description, severity, treatment)
+            medical_issue_id = MedicalIssue.create(description, severity, treatment)
             print(f"Medical issue created with ID: {medical_issue_id}")
         elif choice == "2":
             medical_issue_id = input("Enter medical issue ID to delete: ")
-            delete_medical_issue(medical_issue_id)
+            MedicalIssue.delete(medical_issue_id)
             print(f"Medical issue with ID {medical_issue_id} deleted.")
         elif choice == "3":
-            medical_issues = get_all_medical_issues()
+            medical_issues = MedicalIssue.get_all()
             for issue in medical_issues:
                 print(issue)
         elif choice == "4":
             medical_issue_id = input("Enter medical issue ID to find: ")
-            issue = find_medical_issue_by_id(medical_issue_id)
+            issue = MedicalIssue.find_by_id(medical_issue_id)
             print(issue)
         elif choice == "5":
             break
