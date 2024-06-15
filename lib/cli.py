@@ -103,19 +103,19 @@ def manage_medical_issues():
             description = input("Enter medical issue description: ")
             severity = input("Enter severity: ")
             treatment = input("Enter treatment: ")
-            medical_issue_id = MedicalIssue.create(description, severity, treatment)
+            medical_issue_id = MedicalIssue.create_medical_issue(description, severity, treatment)
             print(f"Medical issue created with ID: {medical_issue_id}")
         elif choice == "2":
             medical_issue_id = input("Enter medical issue ID to delete: ")
-            MedicalIssue.delete(medical_issue_id)
+            MedicalIssue.delete_medical_issue(medical_issue_id)
             print(f"Medical issue with ID {medical_issue_id} deleted.")
         elif choice == "3":
-            medical_issues = MedicalIssue.get_all()
+            medical_issues = MedicalIssue.get_all_medical_issues()
             for issue in medical_issues:
                 print(issue)
         elif choice == "4":
             medical_issue_id = input("Enter medical issue ID to find: ")
-            issue = MedicalIssue.find_by_id(medical_issue_id)
+            issue = MedicalIssue.find_medical_issue_by_id(medical_issue_id)
             print(issue)
         elif choice == "5":
             break
